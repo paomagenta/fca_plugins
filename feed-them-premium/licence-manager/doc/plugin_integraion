@@ -1,0 +1,19 @@
+Following example presents how to integrate the licence-manager with plugin
+which will be sell using digital-licencing:
+
+add_action( 'plugins_loaded', 'init_jigoshop_sample_gateway' );
+function init_jigoshop_sample_gateway() {
+
+	if ( !class_exists( 'licence_manager' ) ) {
+		require( 'licence-manager/licence-manager.php' );
+	}
+	$licence_manager = new licence_manager( __FILE__, 'jigoshop_sample_gateway', 'http://wordpress.loc/' );
+	if ( !$licence_manager->is_licence_active() ) {
+		return false;
+	}
+
+...
+}
+
+Please note that it's extremaly important to define correct input parameters for
+licence_manager class.
